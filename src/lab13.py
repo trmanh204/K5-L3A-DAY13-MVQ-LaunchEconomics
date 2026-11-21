@@ -4,6 +4,7 @@ Không cần khoá API. Điền các chỗ ghi VIẾT Ở ĐÂY (đánh dấu TO
 Bản gốc chưa sửa nằm ở lab13_starter.py.
 """
 import math
+from statistics import NormalDist
 import pandas as pd
 
 # Bảng giá GIẢ ĐỊNH của lab (không phải giá thật của nhà cung cấp nào)
@@ -74,6 +75,31 @@ def mo_hinh(runs, reqs, gia_vao=26, gia_ra=130, gia_tool=15, luong_phut=2000,
         cps=tong / thanh_cong,
         hoa_don_moi_yc=(tien_token.sum() + tien_tool.sum()) / len(reqs),
     )
+
+
+def co_mau(p1, p2, alpha=0.05, power=0.8):
+    """D1: so hai ti le, hai phia; cong thuc trong de, lam tron len."""
+    za = NormalDist().inv_cdf(1 - alpha / 2)
+    zb = NormalDist().inv_cdf(power)
+    pb = (p1 + p2) / 2
+    return math.ceil((za * math.sqrt(2 * pb * (1 - pb))
+                      + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2
+                     / (p2 - p1) ** 2)
+
+
+def co_mau_pilot(icc=0.02):
+    """Tra ca co mau tho va hieu dung de tranh nham 859 voi 5.980."""
+    n5 = co_mau(0.70, 0.75)
+    de75 = 1 + (75 - 1) * icc
+    n_tho75 = math.ceil(n5 * de75)
+    # Cau e cho san 859; giu so nay thay vi thay bang cach xap xi khac.
+    n6 = 859
+    m = math.ceil(n6 * (1 - icc) / (20 - n6 * icc))
+    de = 1 + (m - 1) * icc
+    return dict(n5=n5, de75=de75, n_tho75=n_tho75,
+                staff75=math.ceil(n_tho75 / 75), tran_staff=20 / icc,
+                tran_depot=6 / icc, n6=n6, m=m, de=de,
+                n_tho=20 * m, n_hieu_dung=20 * m / de)
 
 
 if __name__ == '__main__':
@@ -164,6 +190,26 @@ if __name__ == '__main__':
         hoa_von = (kq_pv['thanh_cong'] * BASELINE - tien_tt_pv - tien_ll_100) / (so_co_ok * LUONG_PHUT)
         print(f'Làm lại {phut_ll:4.1f}p | Tổng={tong_100:10,.0f} đ | CPS={cps_100:6,.0f} đ ({cps_100 / BASELINE:.2f}x) | Hoà vốn xem lại <= {hoa_von:.1f}p')
 
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+    # Nhiệm vụ D1: tính đủ năm câu trước khi chọn cách chia.
+    d = co_mau_pilot()
+    print('\n--- D1 · Cỡ mẫu pilot (giả định của lab) ---')
+    print(f'a) Theo yêu cầu, +5 điểm: {d["n5"]:,} yêu cầu/nhóm')
+    print(f'b) m=75: DE={d["de75"]:.2f}; {d["n_tho75"]:,} yêu cầu/nhóm; '
+          f'{d["staff75"]} nhân viên/nhóm, tổng {2 * d["staff75"]} > 40')
+    print(f'c) 20 nhân viên/nhóm: n hiệu dụng < {d["tran_staff"]:,.0f} < {d["n5"]:,}; không đạt +5 điểm')
+    print(f'd) 6 depot/nhóm: n hiệu dụng < {d["tran_depot"]:,.0f}; chỉ 6 cụm/nhóm')
+    print(f'e) +6 điểm, cần {d["n6"]} hiệu dụng/nhóm (đề cho): '
+          f'm={d["m"]}; DE={d["de"]:.2f}; {d["n_tho"]:,} yêu cầu thực/nhóm; '
+          f'n hiệu dụng={d["n_hieu_dung"]:.2f}')
+    from statsmodels.stats.proportion import proportion_effectsize
+    from statsmodels.stats.power import NormalIndPower
+    power5 = NormalIndPower().power(
+        effect_size=proportion_effectsize(0.75, 0.70),
+        nobs1=d['n_hieu_dung'], alpha=0.05, ratio=1, alternative='two-sided')
+    print(f'Đánh đổi: power với tác động thật +5 điểm chỉ {power5:.3f}, không đạt 0,80')
+    print('\n--- D3 · Tỉ lệ mở lại trước khi đặt ngưỡng ---')
+    for ten, tap in [('Toàn mẫu', reqs), ('noi_dia + hang_nang', pv_reqs)]:
+        mo_lai = int((tap['mo_lai_trong_7_ngay'] == 1).sum())
+        print(f'{ten}: {mo_lai}/{len(tap)} = {mo_lai / len(tap):.2%}')
+    print('Ngưỡng đề xuất: mở lại >6% hoặc cao hơn đối chứng >=2 điểm; '
+          'so trên cohort đã đủ 7 ngày theo dõi.')
