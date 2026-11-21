@@ -24,7 +24,7 @@ Nhóm xây dựng bộ **hồ sơ launch v0** cho trợ lý hoàn phí của Log
 - **Chi phí (simulated):** CPS toàn mẫu **4.472 đ/việc** (gấp **16,3×** hoá đơn 274,7 đ/yc; làm lại 51,8%, xem lại 40,7%). Chi phí cả hệ thống là **5.865 đ/yc = 0,49×** baseline 12.000 đ; giới hạn **2 lần chạy** rẻ nhất toàn hệ thống (**6.901.220 đ**). Trong phạm vi `noi_dia` + `hang_nang`, cộng cố định 40 triệu/tháng đạt **4.599 đ (0,38×)** ở 45.000 yc/tháng và **5.784 đ (0,48×)** khi giảm nửa khối lượng. Tuy nhiên, nếu xem lại 100%, chi phí lên **11.743 đ (0,98×)** (9p làm lại) hoặc **12.415 đ (1,03×)** (15,3p làm lại).
 - **Chỉ số đợt chạy thử (không đối chứng):** Chính **82,83%** (994/1.200); bỏ qua gợi ý **27,12%** (48/177); mở lại 7 ngày **4,25%** (51/1.200; trong phạm vi **3,97%**).
 - **Đề xuất cuối của [ho_so_launch_v0.md](ho_so_launch_v0.md):** **Go có điều kiện** cho kế hoạch pilot `noi_dia` + `hang_nang` (tối đa 2 lần chạy) với 4 điều kiện cụ thể trước ngày `2026-11-23`.
-- **Kết quả duyệt chéo Gate 2a:** *(Cập nhật sau phiên duyệt chéo 17:00 cùng phiếu [phieu_cham.md](phieu_cham.md)).*
+- **Kết quả duyệt chéo Gate 2a:** Nhóm MVQ đã hoàn thành chấm chéo hồ sơ của nhóm `lucky` (Lớp L3A, repo `K5-L3A-DAY13-lucky-LaunchEconomics`) với tổng điểm **30/30**, quyết định **Go có điều kiện** kèm 1 câu hỏi phản biện về xung đột ngưỡng dừng 8.000 đ trong giai đoạn xem lại 100% — chi tiết xem [phieu_cham.md](phieu_cham.md).
 
 ## 5. Khó khăn và cách xử lý
 

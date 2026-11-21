@@ -27,6 +27,7 @@
 - `report/team/chi_so.md`: Đầy đủ bảng E1 (5 chỉ số), danh sách 10 event có `trace_id`, kiểm tra chéo và bảng E2 (3 rủi ro kinh tế có nhãn `simulated`).
 - `report/team/ho_so_launch_v0.md`: Hồ sơ launch v0 dài 1 trang, đủ 7 mục, đúng quy ước trạng thái, đề xuất Go có điều kiện với 4 điều kiện đo được.
 - `report/team/bang_loi.md`: Cột nhãn độc lập của Người gắn nhãn 2 (Trần Đức Mạnh) cho 20 ca lỗi.
+- `report/team/phieu_cham.md`: Phiếu chấm chéo Gate 2a cho nhóm `lucky` (`K5-L3A-DAY13-lucky-LaunchEconomics`, 30/30 điểm, quyết định Go có điều kiện và câu hỏi phản biện bằng số).
 - `TEAM.md` và `report/team/group_report.md`: Cập nhật đầy đủ thông tin nhóm 3 thành viên và tổng hợp kết quả.
 
 ## 5. Công cụ AI đã dùng

@@ -5,7 +5,7 @@
 - Tên nhóm: MVQ
 - Lớp: L3A
 - Repo nhóm: https://github.com/trmanh204/K5-L3A-DAY13-MVQ-LaunchEconomics
-- URL repo, nhánh nộp, commit chốt: https://github.com/trmanh204/K5-L3A-DAY13-MVQ-LaunchEconomics · nhánh `main` · (điền mã commit chốt sau duyệt chéo 17:00)
+- URL repo, nhánh nộp, commit chốt: https://github.com/trmanh204/K5-L3A-DAY13-MVQ-LaunchEconomics · nhánh `main`
 
 ## Thành viên
 
@@ -95,4 +95,5 @@ Sao chép mục dưới đây cho từng thành viên.
 
 - [Chỉ số, event & rủi ro E1–E2](report/team/chi_so.md)
 - [Hồ sơ launch v0](report/team/ho_so_launch_v0.md)
+- [Phiếu chấm chéo Gate 2a](report/team/phieu_cham.md)
 - [Báo cáo cá nhân](report/team/2A202603615_TranDucManh.md)
